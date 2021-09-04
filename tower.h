@@ -31,6 +31,8 @@ public:
     struct tah prev;
     struct tah next;
 
+    int lenght;
+
     Tower(int n);
 
     bool possible(struct tah a);

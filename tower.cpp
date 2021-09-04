@@ -7,13 +7,11 @@ using namespace std;
 
 Tower::Tower(int n)
 {
-    vector<vector<int>> tower;
-
     vector<int> tower1;
     vector<int> tower2;
     vector<int> tower3;
 
-    for(int i=1; i < n; i++){
+    for(int i=0; i < n; i++){
         tower1.push_back(i+1);
         tower2.push_back(0);
         tower3.push_back(0);
@@ -27,11 +25,13 @@ Tower::Tower(int n)
     next.from = 0;
     prev.to = 0;
     next.to = 0;
+
+    lenght = n;
 }
 
 bool Tower::possible(struct tah a) {
     for (int i = 0; i < tower.size(); i++) {
-        for (int j = 0; j < (tower[0].size() - 1); j++) {
+        for (int j = 0; j < (lenght - 1); j++) {
             if (!(tower[i][j] <= tower[i][j + 1])) {
                 return false;
             }
@@ -42,10 +42,10 @@ bool Tower::possible(struct tah a) {
 
 bool Tower::start() {
     int i = 0;
-    while (tower[0][i] == i + 1 && i < tower[0].size()) {
+    while (i < lenght && tower[0][i] == i + 1) {
         i++;
     }
-    if (i == tower[0].size()) {
+    if (i == lenght) {
         return true;
     }
     else {
@@ -55,10 +55,10 @@ bool Tower::start() {
 
 bool Tower::solved() {
     int i = 0;
-    while (tower[2][i] == i + 1 && i < tower[0].size()) {
+    while (i < lenght && tower[2][i] == i + 1) {
         i++;
     }
-    if (i == tower[0].size()) {
+    if (i == lenght) {
         return true;
     }
     else {
@@ -68,11 +68,11 @@ bool Tower::solved() {
 
 void Tower::move(struct tah a) {
     int i = 0;
-    while (tower.at(a.from).at(i) == 0 && i < tower[0].size()) {
+    while (tower[a.from][i] == 0 && i < lenght) {
         i++;
     }
     int j = 0;
-    while (tower[a.to][j] == 0 && j < (tower[0].size())) {
+    while (tower[a.to][j] == 0 && j < lenght) {
         j++;
     }
     j--;
@@ -83,7 +83,7 @@ void Tower::move(struct tah a) {
 struct tah Tower::thinking() {
     if (start()) {
             next.from = 0;
-            if (tower[0].size() % 2 == 0) {
+            if (lenght % 2 == 0) {
                 next.to = 2;
                 return next;
             }
@@ -102,7 +102,7 @@ struct tah Tower::thinking() {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     int l = 0;
-                    while (tower[i][l] == 0 && l < tower[0].size()) {
+                    while (tower[i][l] == 0 && l < lenght) {
                         l++;
                     }
                     if (i != j && i != prev.to && b.from == 0 && b.to == 0 && tower[i][l] != 0) {
@@ -129,13 +129,13 @@ struct tah Tower::thinking() {
             cout << b.from << endl;
             cout << b.to << endl;
             int i = 0;
-            while (tower[a.to][i] == 0 && i < tower[0].size()) {
+            while (tower[a.to][i] == 0 && i < lenght) {
                 i++;
             }
             if (b.from != 0 || b.to != 0) {
                 int j = 0;
                 cout << "Hi" << endl;
-                while (tower[b.to][j] == 0 && j < tower[0].size()) {
+                while (tower[b.to][j] == 0 && j < lenght) {
                     j++;
                 }
                 if (tower[b.to][j] < tower[a.to][i]) {

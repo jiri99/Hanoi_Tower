@@ -15,7 +15,10 @@
 
 #include "tower.h"
 
+using namespace std;
+
 const int N = 13;
+
 
 class CustomWidget : public QWidget
 {
@@ -69,7 +72,7 @@ public slots:
 };
 
 void MyClass::run(int k) {
-    std::cout << k << std::endl;
+    cout << k << endl;
 }
 
 
@@ -101,7 +104,27 @@ int main(int argc, char **argv)
     navlayout->addWidget(horizontalSlider);
     navlayout->addWidget(button);
 
-    Tower pokus = Tower(5);
+    Tower pokus(5);
+    tah m;
+    m.from = 0;
+    m.to = 1;
+
+    cout << "Start of the test" << endl;
+    cout << pokus.lenght << endl;
+    if(pokus.start()) {
+        cout << "Start"<< endl;
+    }
+    if(pokus.solved()) {
+        cout << "Solved"<< endl;
+    }
+    pokus.move(m);
+
+    for (int i = 0; i < pokus.tower.size(); i++) {
+        for (int j = 0; j < pokus.lenght; j++) {
+            cout << pokus.tower[i][j];
+        }
+        cout << endl;
+    }
 
     window.setLayout(navlayout);
     window.show();
