@@ -21,12 +21,12 @@ struct tah {
     int to;
 };
 
-class Tower
+class Tower : public QWidget
 {
 public:
     vector<vector<int>> tower;
 
-    QPainter painter();
+    QPainter painter;
 
     struct tah prev;
     struct tah next;
@@ -42,6 +42,22 @@ public:
     void move(struct tah a);
     struct tah thinking();
     void paint();
+public:
+    explicit Tower(QWidget *parent = nullptr) : QWidget{parent} {}
+    void paintEvent(QPaintEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
 };
+
+/*class CustomWidget : public QWidget
+{
+public:
+   vector<vector<int>> tower;
+   int lenght;
+   explicit CustomWidget(vector<vector<int>>in_tower, int in_lenght, QWidget *parent = nullptr) : QWidget{parent} {
+       tower = in_tower;
+       lenght = in_lenght;
+   }
+   void paintEvent(QPaintEvent *) override;
+};*/
 
 #endif // TOWER_H
