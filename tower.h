@@ -23,18 +23,18 @@ struct tah {
     int to;
 };
 
-class Tower : public QWidget
+class Tower
 {
-    Q_OBJECT
 public:
     vector<vector<int>> tower;
-
-    QPainter painter;
 
     struct tah prev;
     struct tah next;
 
     int lenght;
+
+    Tower(int n);
+    ~Tower() {};
 
     bool possible(struct tah a);
     bool start();
@@ -43,25 +43,7 @@ public:
     void move(struct tah a);
     struct tah thinking();
     void paint();
-public:
-    explicit Tower(int n, QWidget *parent = nullptr);
-    virtual ~Tower();
-    void paintEvent(QPaintEvent *) override;
-    void mouseMoveEvent(QMouseEvent *) override;
 };
 
-
-
-/*class DrawingArea : public QWidget
-{
-public:
-    Tower hanoi;
-    explicit DrawingArea(int n, QWidget *parent = nullptr) : QWidget{parent} {
-        hanoi = new Tower(n);
-    };
-    virtual ~DrawingArea();
-    void paintEvent(QPaintEvent *) override;
-    void mouseMoveEvent(QMouseEvent *) override;
-};*/
 
 #endif // TOWER_H

@@ -7,7 +7,7 @@
 #include <QSlider>
 #include <QHBoxLayout>
 
-#include "tower.h"
+#include "drawingarea.h"
 
 class Navbar : public QMainWindow
 {
@@ -19,7 +19,7 @@ class Navbar : public QMainWindow
     QHBoxLayout *navlayout;
     QAction *actRun;
 
-    Tower *hanoi;
+    DrawingArea *area;
 public:
     Navbar(QWidget *parent = nullptr);
     ~Navbar();

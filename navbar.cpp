@@ -1,5 +1,5 @@
 #include "navbar.h"
-#include "tower.h"
+#include "drawingarea.h"
 
 #include <windows.h>
 
@@ -40,8 +40,11 @@ Navbar::~Navbar() {};
 
 void Navbar::run() {
     int n = horizontalSlider->value();
-    hanoi = new Tower(n, nullptr);
+    area = new DrawingArea(n, nullptr);
 
+    cout << "Drawing area created" << endl;
+    // area->resize(960, 540);
+    area->show();
     /*tah m;
     while(!hanoi.solved()) {
         m = hanoi.thinking();
