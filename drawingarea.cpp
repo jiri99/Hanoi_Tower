@@ -1,15 +1,20 @@
 #include "drawingarea.h"
+#include <QPainter>
 
 DrawingArea::DrawingArea(int n, QWidget *parent) : QWidget{parent}
 {
     hanoi = new Tower(n);
     resize(960, 540);
     connect(this, SIGNAL(clicked()), this, SLOT(repaint()));
+    connect(this, SIGNAL(solved()), this, SLOT(close()));
 }
 
 void DrawingArea::mousePressEvent(QMouseEvent *) {
     tah m;
     m = hanoi->thinking();
+    if(hanoi->solved()) {
+        emit solved();
+    }
     hanoi->move(m);
 
     emit clicked();
@@ -54,3 +59,6 @@ void DrawingArea::paintEvent(QPaintEvent *)
         }
     }
 }
+
+
+void DrawingArea::closeEvent(QCloseEvent *) {}

@@ -1,18 +1,6 @@
 #ifndef TOWER_H
 #define TOWER_H
 
-#include <QApplication>
-#include <QPushButton>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QStackedWidget>
-#include <QSlider>
-#include <QPainter>
-#include <QStylePainter>
-#include <QLabel>
-#include <QGraphicsRectItem>
-#include <QGraphicsView>
-
 #include <iostream>
 #include <vector>
 
@@ -39,6 +27,7 @@ public:
     bool possible(struct tah a);
     bool start();
     bool solved();
+    bool direct_step();
 
     void move(struct tah a);
     struct tah thinking();

@@ -1,11 +1,9 @@
 #include "navbar.h"
 #include "drawingarea.h"
 
-#include <windows.h>
-
 using namespace std;
 
-const int N = 12;
+const int N = 11;
 
 Navbar::Navbar(QWidget *parent) : QMainWindow(parent)
 {
@@ -41,13 +39,5 @@ Navbar::~Navbar() {};
 void Navbar::run() {
     int n = horizontalSlider->value();
     area = new DrawingArea(n, nullptr);
-
-    cout << "Drawing area created" << endl;
-    // area->resize(960, 540);
     area->show();
-    /*tah m;
-    while(!hanoi.solved()) {
-        m = hanoi.thinking();
-        hanoi.move(m);
-    }*/
 };

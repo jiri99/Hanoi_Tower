@@ -2,6 +2,7 @@
 #define DRAWINGAREA_H
 
 #include <QWidget>
+#include <QPainter>
 #include "tower.h"
 
 class DrawingArea : public QWidget
@@ -15,8 +16,10 @@ public:
     };
     void paintEvent(QPaintEvent *) override;
     void mousePressEvent(QMouseEvent *) override;
+    void closeEvent(QCloseEvent *evt) override;
 signals:
     void clicked();
+    void solved();
 };
 
 #endif // DRAWINGAREA_H
