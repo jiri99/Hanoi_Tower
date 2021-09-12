@@ -1,7 +1,6 @@
 #ifndef TOWER_H
 #define TOWER_H
 
-#include <iostream>
 #include <QApplication>
 #include <QPushButton>
 #include <QHBoxLayout>
@@ -14,6 +13,9 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsView>
 
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
 struct tah {
@@ -23,6 +25,7 @@ struct tah {
 
 class Tower : public QWidget
 {
+    Q_OBJECT
 public:
     vector<vector<int>> tower;
 
@@ -33,8 +36,6 @@ public:
 
     int lenght;
 
-    Tower(int n);
-
     bool possible(struct tah a);
     bool start();
     bool solved();
@@ -43,21 +44,24 @@ public:
     struct tah thinking();
     void paint();
 public:
-    explicit Tower(QWidget *parent = nullptr) : QWidget{parent} {}
+    explicit Tower(int n, QWidget *parent = nullptr);
+    virtual ~Tower();
     void paintEvent(QPaintEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
 };
 
-/*class CustomWidget : public QWidget
+
+
+/*class DrawingArea : public QWidget
 {
 public:
-   vector<vector<int>> tower;
-   int lenght;
-   explicit CustomWidget(vector<vector<int>>in_tower, int in_lenght, QWidget *parent = nullptr) : QWidget{parent} {
-       tower = in_tower;
-       lenght = in_lenght;
-   }
-   void paintEvent(QPaintEvent *) override;
+    Tower hanoi;
+    explicit DrawingArea(int n, QWidget *parent = nullptr) : QWidget{parent} {
+        hanoi = new Tower(n);
+    };
+    virtual ~DrawingArea();
+    void paintEvent(QPaintEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
 };*/
 
 #endif // TOWER_H

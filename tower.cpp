@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Tower::Tower(int n)
+Tower::Tower(int n, QWidget *parent) : QWidget(parent)
 {
     QPainter painter;
 
@@ -31,6 +31,8 @@ Tower::Tower(int n)
 
     lenght = n;
 }
+
+Tower::~Tower() {};
 
 bool Tower::possible(struct tah a) {
     int i = 0;
@@ -164,6 +166,7 @@ struct tah Tower::thinking() {
 };
 
 void Tower::mouseMoveEvent(QMouseEvent *) {
+    QPainter painter(this);
     tah m;
     m = thinking();
     move(m);
