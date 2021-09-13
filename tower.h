@@ -16,22 +16,25 @@ class Tower
 public:
     vector<vector<int>> tower;
 
-    struct tah prev;
     struct tah next;
 
     int lenght;
+    int total_moves;
+    int actual_move;
+
+    int A;
+    int B;
+    int C;
 
     Tower(int n);
     ~Tower() {};
 
     bool possible(struct tah a);
-    bool start();
     bool solved();
-    bool direct_step();
+    int find_upper(int index);
 
     void move(struct tah a);
     struct tah thinking();
-    void paint();
 };
 
 

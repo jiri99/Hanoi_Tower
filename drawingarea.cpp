@@ -48,8 +48,7 @@ void DrawingArea::paintEvent(QPaintEvent *)
     painter.drawRect(stand2);
     painter.drawRect(stand3);
 
-    double l = 130/(hanoi->lenght+1);
-    cout << l << endl;
+    double l = 130/(double)(hanoi->lenght+1);
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < hanoi->lenght; j++) {
