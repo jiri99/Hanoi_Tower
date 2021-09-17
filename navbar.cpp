@@ -11,7 +11,7 @@ Navbar::Navbar(QWidget *parent) : QMainWindow(parent)
 
     navlayout = new QHBoxLayout;
     lcd = new QLCDNumber();
-    button = new QPushButton("Run");
+    start = new QPushButton("Start");
     horizontalSlider = new QSlider(Qt::Horizontal);
 
     this->setFixedSize(500, 50);
@@ -24,11 +24,11 @@ Navbar::Navbar(QWidget *parent) : QMainWindow(parent)
     horizontalSlider->setValue(3);
     QObject::connect(horizontalSlider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
 
-    QObject::connect(button, SIGNAL(clicked()), this, SLOT (run()));
+    QObject::connect(start, SIGNAL(clicked()), this, SLOT (run()));
 
     navlayout->addWidget(lcd);
     navlayout->addWidget(horizontalSlider);
-    navlayout->addWidget(button);
+    navlayout->addWidget(start);
 
     window->setLayout(navlayout);
     this->setCentralWidget(window);

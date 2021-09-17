@@ -5,11 +5,27 @@ DrawingArea::DrawingArea(int n, QWidget *parent) : QWidget{parent}
 {
     hanoi = new Tower(n);
     resize(960, 540);
+
+    timer = new QTimer(this);
+    timer->setInterval(200);
+    timer->setSingleShot(false);
+    connect(timer, SIGNAL(timeout()), this, SLOT(time_out()));
+    timer->start();
+
     connect(this, SIGNAL(clicked()), this, SLOT(repaint()));
     connect(this, SIGNAL(solved()), this, SLOT(close()));
 }
 
 void DrawingArea::mousePressEvent(QMouseEvent *) {
+    if(timer->isActive()){
+        timer->stop();
+    }
+    else {
+        timer->start();
+    }
+}
+
+void DrawingArea::time_out() {
     tah m;
     m = hanoi->thinking();
     if(hanoi->solved()) {

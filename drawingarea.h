@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QPainter>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QTimer>
 #include "tower.h"
 
 class DrawingArea : public QWidget
@@ -10,6 +13,7 @@ class DrawingArea : public QWidget
     Q_OBJECT
 public:
     Tower *hanoi;
+    QTimer *timer;
     DrawingArea(int n, QWidget *parent = nullptr);
     virtual ~DrawingArea() {
         delete hanoi;
@@ -17,6 +21,8 @@ public:
     void paintEvent(QPaintEvent *) override;
     void mousePressEvent(QMouseEvent *) override;
     void closeEvent(QCloseEvent *evt) override;
+public slots:
+    void time_out();
 signals:
     void clicked();
     void solved();

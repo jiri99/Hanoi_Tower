@@ -15,7 +15,7 @@ class Navbar : public QMainWindow
     QWidget *window;
     QLCDNumber *lcd;
     QSlider *horizontalSlider;
-    QPushButton *button;
+    QPushButton *start;
     QHBoxLayout *navlayout;
     QAction *actRun;
 
